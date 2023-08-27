@@ -31,4 +31,4 @@ app.include_router(mfc.router)
 @app.on_event("startup")
 async def startup():
     redis = aioredis.from_url("redis://localhost")
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    FastAPICache.init(RedisBackend(redis), prefix="tenji-cache")
