@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+
+  redis:
+    container_name: tenji_redis
+    image: redis
+    restart: always
+    ports:
+      - 6969:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 5s
+      retries: 5
+    networks:
+      - tenji-network
+
+  app:
+    build: .
+    container_name: tenji_api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 80
+    ports:
+      - 8000:80
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: always
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    networks:
+      - tenji-network
+    
+
+networks:
+  tenji-network:
+    driver: bridge
