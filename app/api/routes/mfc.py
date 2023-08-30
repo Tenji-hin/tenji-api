@@ -4,7 +4,7 @@ from tenji import MfcClient
 from tenji.request.user.collection import CollectionStatus
 
 router = APIRouter(
-    prefix="/api/v1",
+    prefix="/v1",
     tags=["mfc"],
     responses={404: {"description": "Not found"}},
 )
