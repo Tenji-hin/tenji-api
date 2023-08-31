@@ -36,7 +36,7 @@ async def get_collection(
 
 @router.get("/list/{id}")
 @cache(expire=60)
-async def get_profile(id: int, page: int = 1):
+async def get_list(id: int, page: int = 1):
     l = await client.get_list(id, page)
     return DataResponse(l)
 
