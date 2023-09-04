@@ -6,7 +6,7 @@ import aioredis
 from dotenv import load_dotenv
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
-from app.api.routes import mfc
+from app.api.routes import items, lists, shops, users
 from logtail import LogtailHandler
 
 load_dotenv(".env")
@@ -26,7 +26,11 @@ app = FastAPI(
     version="0.1.0",
 )
 
-app.include_router(mfc.router)
+app.include_router(items.router)
+app.include_router(lists.router)
+app.include_router(shops.router)
+app.include_router(users.router)
+
 
 @app.on_event("startup")
 async def startup():
