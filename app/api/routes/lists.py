@@ -20,11 +20,11 @@ client = MfcClient()
 @cache(expire=60)
 async def get_list(id: int, page: int = 1):
     l = await client.get_list(id, page)
-    return ResponseModel(data=sl)
+    return ResponseModel(data=l)
 
 
 @router.get("/lists/{username}")
 @cache(expire=60)
 async def get_lists(username: str):
     lists = await client.get_lists(username)
-    return ResponseModel(data=slists)
+    return ResponseModel(data=lists)
