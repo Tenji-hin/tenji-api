@@ -6,7 +6,7 @@ from app.api.models.response import ResponseModel
 
 router = APIRouter(
     prefix="/v1",
-    tags=["users"],
+    tags=["items"],
     responses={
         404: {"description": "Not found"},
         500: {"description": "Internal Server Error"},
